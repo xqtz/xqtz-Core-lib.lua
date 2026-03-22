@@ -1,3 +1,844 @@
-local v0=game:GetService("Players");local v1=game:GetService("UserInputService");local v2=v0.LocalPlayer;local v3=v2:WaitForChild("PlayerGui");local v4={crimson={Name="Crimson",Desc="Deep blood red",Accent=Color3.fromRGB(228 -98 ,40,40),AccentGlow=Color3.fromRGB(160,1587 -(485 + 1052) ,206 -156 ),Primary=Color3.fromRGB(1492 -(1249 + 73) ,36 + 64 ,1245 -(466 + 679) )},obsidian={Name="Obsidian",Desc="Dark ash with red glow",Accent=Color3.fromRGB(180 -105 ,45,128 -83 ),AccentGlow=Color3.fromRGB(140,60,1960 -(106 + 1794) ),Primary=Color3.fromRGB(43 + 92 ,27 + 78 ,309 -204 )},noir={Name="Noir",Desc="Muted violet charcoal",Accent=Color3.fromRGB(297 -187 ,209 -(4 + 110) ,719 -(57 + 527) ),AccentGlow=Color3.fromRGB(1522 -(41 + 1386) ,183 -(17 + 86) ,82 + 38 ),Primary=Color3.fromRGB(135,312 -172 ,477 -312 )},ruby={Name="Ruby",Desc="Soft deep red",Accent=Color3.fromRGB(316 -(122 + 44) ,120 -50 ,232 -162 ),AccentGlow=Color3.fromRGB(175,85,70 + 15 ),Primary=Color3.fromRGB(190,19 + 106 ,253 -128 )},forest={Name="Forest",Desc="Calm natural green",Accent=Color3.fromRGB(65,125,150 -(30 + 35) ),AccentGlow=Color3.fromRGB(80,104 + 46 ,1362 -(1043 + 214) ),Primary=Color3.fromRGB(453 -333 ,1387 -(323 + 889) ,140)},ocean={Name="Ocean",Desc="Balanced deep blue",Accent=Color3.fromRGB(188 -118 ,670 -(361 + 219) ,150),AccentGlow=Color3.fromRGB(85,110,175),Primary=Color3.fromRGB(445 -(53 + 267) ,140,45 + 150 )},sand={Name="Sand",Desc="Warm neutral gold",Accent=Color3.fromRGB(568 -(15 + 398) ,1107 -(18 + 964) ,263 -193 ),AccentGlow=Color3.fromRGB(105 + 75 ,92 + 53 ,935 -(20 + 830) ),Primary=Color3.fromRGB(157 + 43 ,301 -(116 + 10) ,10 + 115 )}};local v5={Background=Color3.fromRGB(756 -(542 + 196) ,38 -20 ,7 + 15 ),Panel=Color3.fromRGB(13 + 11 ,9 + 15 ,79 -49 ),PanelHeader=Color3.fromRGB(30 -18 ,1563 -(1126 + 425) ,421 -(118 + 287) ),Card=Color3.fromRGB(28,28,34),Text=Color3.fromRGB(685 -510 ,1293 -(118 + 1003) ,541 -356 ),TextDim=Color3.fromRGB(467 -(142 + 235) ,88,453 -353 ),TextBright=Color3.fromRGB(200,198,46 + 164 ),Border=Color3.fromRGB(1019 -(553 + 424) ,79 -37 ,46 + 6 ),TabActive=Color3.fromRGB(28,28,34),TabInactive=Color3.fromRGB(20 + 0 ,20,26),SilverDim=Color3.fromRGB(30 + 20 ,22 + 28 ,60),Button=Color3.fromRGB(20 + 15 ,35,97 -52 ),Primary=Color3.fromRGB(120,356 -228 ,347 -192 ),Accent=Color3.fromRGB(35 + 85 ,410 -325 ,130),AccentGlow=Color3.fromRGB(853 -(239 + 514) ,21 + 37 ,1439 -(797 + 532) )};local v6={Title=Enum.Font.Antique,Header=Enum.Font.Antique,Body=Enum.Font.Garamond,Mono=Enum.Font.Code,Tab=Enum.Font.Antique};local v7={HeaderHeight=48,TabHeight=24 + 8 ,FooterHeight=32,ContentPadding=6 + 10 ,CornerRadius=9 -5 ,BorderWidth=1203 -(373 + 829) ,RowHeight=765 -(476 + 255) ,RowSpacing=1136 -(369 + 761) ,ButtonHeight=21 + 15 };local function v8(v19,v20,v21) local v22=0 -0 ;local v23;while true do if (v22==(1 -0)) then local v174=238 -(64 + 174) ;while true do if (v174==(0 + 0)) then for v233,v234 in ipairs(v21 or {} ) do v234.Parent=v23;end return v23;end end end if (v22==0) then local v175=0 -0 ;while true do if (v175==0) then v23=Instance.new(v19);for v236,v237 in pairs(v20 or {} ) do v23[v236]=v237;end v175=1;end if ((337 -(144 + 192))==v175) then v22=217 -(42 + 174) ;break;end end end end end local function v9(v24,v25) return v8("UICorner",{CornerRadius=UDim.new(0 + 0 ,v25 or v7.CornerRadius ),Parent=v24});end local function v10(v26,v27,v28) return v8("UIStroke",{Color=v27 or v5.Border ,Thickness=v28 or v7.BorderWidth ,Parent=v26});end local function v11(v29,v30,v31,v32,v33) return v8("UIPadding",{PaddingTop=UDim.new(0 + 0 ,v30 or (0 + 0) ),PaddingRight=UDim.new(1504 -(363 + 1141) ,v31 or (1580 -(1183 + 397)) ),PaddingBottom=UDim.new(0,v32 or 0 ),PaddingLeft=UDim.new(0 -0 ,v33 or (0 + 0) ),Parent=v29});end local function v12(v34,v35) return v8("UIListLayout",{SortOrder=Enum.SortOrder.LayoutOrder,Padding=UDim.new(0 + 0 ,v35 or v7.RowSpacing ),Parent=v34});end local v13={accent={},accentGlow={},primary={}};local function v14(v36,v37,v38) table.insert(v36,{inst=v37,prop=v38});end local v15={};v15.__index=v15;v15.AddTheme=function(v39,v40,v41) v4[v40]=v41;end;v15.CreateWindow=function(v43,v44) v44=v44 or {} ;local v45=v44.Title or "XQTZ CORE" ;local v46=(v44.Size and v44.Size[1]) or (2495 -(1913 + 62)) ;local v47=(v44.Size and v44.Size[2 + 0 ]) or 480 ;local v48=v44.Theme or "crimson" ;local v49=v44.Footer or "Eendracht maakt macht" ;local v50=v44.Version or "v1" ;local v51=v44.ToggleKey or "Minus" ;local v52=v48;local v53={};local v54={};local v55={};local v56=nil;local v57=0 -0 ;local v58=v8("ScreenGui",{Name="XQTZ_CORE",ResetOnSpawn=false,ZIndexBehavior=Enum.ZIndexBehavior.Sibling,Parent=v3});local v59=v8("Frame",{Name="MainPanel",Size=UDim2.new(1933 -(565 + 1368) ,v46,0,v47),Position=UDim2.new(0.5 -0 , -v46/(1663 -(1477 + 184)) ,0.5 -0 , -v47/(2 + 0) ),BackgroundColor3=v5.Panel,BorderSizePixel=856 -(564 + 292) ,Active=true,Draggable=true,Parent=v58});v9(v59);v10(v59);local v60=v8("Frame",{Name="Header",Size=UDim2.new(1 -0 ,0 -0 ,304 -(244 + 60) ,v7.HeaderHeight),BackgroundColor3=v5.PanelHeader,BorderSizePixel=0,Parent=v59});v9(v60);local v61=v8("Frame",{Size=UDim2.new(0.5,0 + 0 ,476 -(41 + 435) ,1003 -(938 + 63) ),Position=UDim2.new(0.25,0,0 + 0 ,0),BackgroundColor3=v5.Accent,BorderSizePixel=0,Parent=v60});v14(v13.accent,v61,"BackgroundColor3");local v62=v8("TextLabel",{Text=v45,Font=v6.Title,TextSize=1143 -(936 + 189) ,TextColor3=v5.Primary,BackgroundTransparency=1,Size=UDim2.new(0.6 + 0 ,1613 -(1565 + 48) ,1 + 0 ,1138 -(782 + 356) ),Position=UDim2.new(267 -(176 + 91) ,82 -50 ,0 -0 ,1092 -(975 + 117) ),TextXAlignment=Enum.TextXAlignment.Left,Parent=v60});v14(v13.primary,v62,"TextColor3");local v63=v8("TextButton",{Text="×",Font=v6.Body,TextSize=1893 -(157 + 1718) ,TextColor3=v5.TextDim,BackgroundTransparency=1 + 0 ,Size=UDim2.new(0,99 -71 ,0 -0 ,1046 -(697 + 321) ),Position=UDim2.new(1, -(92 -58),0.5 -0 , -(31 -17)),Parent=v60});v63.MouseButton1Click:Connect(function() v59.Visible= not v59.Visible;end);local v64=v8("Frame",{Name="TabBar",Size=UDim2.new(1 + 0 ,0 -0 ,0 -0 ,v7.TabHeight),Position=UDim2.new(1227 -(322 + 905) ,611 -(602 + 9) ,1189 -(449 + 740) ,v7.HeaderHeight),BackgroundColor3=v5.TabInactive,BorderSizePixel=872 -(826 + 46) ,Parent=v59});local v65=v8("Frame",{Name="ContentArea",Size=UDim2.new(948 -(245 + 702) ,0 -0 ,1, -(v7.HeaderHeight + v7.TabHeight + v7.FooterHeight)),Position=UDim2.new(0,0 + 0 ,0,v7.HeaderHeight + v7.TabHeight ),BackgroundColor3=v5.Card,BorderSizePixel=0,ClipsDescendants=true,Parent=v59});local v66=v8("Frame",{Size=UDim2.new(1,0,1898 -(260 + 1638) ,v7.FooterHeight),Position=UDim2.new(440 -(382 + 58) ,0 -0 ,1 + 0 , -v7.FooterHeight),BackgroundColor3=v5.PanelHeader,BorderSizePixel=0 -0 ,Parent=v59});v8("TextLabel",{Text=v49,Font=v6.Body,TextSize=32 -21 ,TextColor3=v5.TextDim,BackgroundTransparency=1,Size=UDim2.new(1205.75 -(902 + 303) ,0 -0 ,2 -1 ,0 + 0 ),Position=UDim2.new(0,1702 -(1121 + 569) ,0,214 -(22 + 192) ),TextXAlignment=Enum.TextXAlignment.Left,Parent=v66});v8("TextLabel",{Text=v50,Font=v6.Mono,TextSize=692 -(483 + 200) ,TextColor3=v5.TextDim,BackgroundTransparency=1464 -(1404 + 59) ,Size=UDim2.new(0.2 -0 ,0 -0 ,766 -(468 + 297) ,562 -(334 + 228) ),Position=UDim2.new(0.8 -0 ,0 -0 ,0 -0 ,0),TextXAlignment=Enum.TextXAlignment.Right,Parent=v66});local function v67(v81) local v82=0;local v83;while true do if (0==v82) then v83=0 + 0 ;while true do if (v83==1) then for v239,v240 in pairs(v54) do v240.Visible=v239==v81 ;end break;end if (v83==0) then v56=v81;for v242,v243 in pairs(v53) do local v244=0;local v245;while true do if (v244==(236 -(141 + 95))) then v245=v242==v81 ;v243.button.BackgroundColor3=(v245 and v5.TabActive) or v5.TabInactive ;v244=1 + 0 ;end if (v244==1) then v243.button.TextColor3=(v245 and v5.Primary) or v5.TextDim ;v243.indicator.Visible=v245;break;end end end v83=1;end end break;end end end local function v68() local v84=0 -0 ;local v85;while true do if (v84==(4 -2)) then if v56 then v67(v56);end break;end if (v84==(1 + 0)) then local v188=0;while true do if ((2 -1)==v188) then v84=2 + 0 ;break;end if (0==v188) then v85= #v55;for v246,v247 in ipairs(v55) do local v248=0 + 0 ;local v249;local v250;local v251;local v252;while true do if (v248==(1 -0)) then v250=v249:GetAttribute("TabLabel") or v247 ;v251=v8("TextButton",{Name="Tab_"   .. v247 ,Text=v250,Font=v6.Tab,TextSize=7 + 4 ,TextColor3=v5.TextDim,BackgroundColor3=v5.TabInactive,BorderSizePixel=163 -(92 + 71) ,Size=UDim2.new((1 + 0)/v85 ,0 -0 ,1,0),Position=UDim2.new((v246-1)/v85 ,0,765 -(574 + 191) ,0 + 0 ),AutoButtonColor=false,Parent=v64});v248=4 -2 ;end if (v248==3) then v53[v247]={button=v251,indicator=v252};v251.MouseButton1Click:Connect(function() v67(v247);end);break;end if (v248==0) then v249=v54[v247];if  not v249 then continue;end v248=1;end if (v248==(2 + 0)) then v252=v8("Frame",{Size=UDim2.new(849.6 -(254 + 595) ,126 -(55 + 71) ,0 -0 ,1791 -(573 + 1217) ),Position=UDim2.new(0.2 -0 ,0,1, -1),BackgroundColor3=v5.Accent,BorderSizePixel=0 + 0 ,Visible=v247==v56 ,Parent=v251});v14(v13.accent,v252,"BackgroundColor3");v248=4 -1 ;end end end v188=1;end end end if (v84==(939 -(714 + 225))) then for v202,v203 in ipairs(v64:GetChildren()) do if v203:IsA("TextButton") then v203:Destroy();end end v53={};v84=2 -1 ;end end end local function v69(v86) local v87=0 -0 ;local v88;while true do if (v87==(1 + 2)) then for v204,v205 in ipairs(v13.primary) do pcall(function() v205.inst[v205.prop]=v88.Primary;end);end for v206,v207 in ipairs(v13.accent) do pcall(function() v207.inst[v207.prop]=v88.Accent;end);end v87=5 -1 ;end if (v87==(807 -(118 + 688))) then v52=v86;v5.Primary=v88.Primary;v87=50 -(25 + 23) ;end if (4==v87) then for v208,v209 in ipairs(v13.accentGlow) do pcall(function() v209.inst[v209.prop]=v88.AccentGlow;end);end break;end if (v87==(0 + 0)) then v88=v4[v86];if  not v88 then return;end v87=1887 -(927 + 959) ;end if (v87==(6 -4)) then v5.Accent=v88.Accent;v5.AccentGlow=v88.AccentGlow;v87=3;end end end v1.InputBegan:Connect(function(v89,v90) local v91=732 -(16 + 716) ;while true do if (0==v91) then if v90 then return;end if (v89.UserInputType==Enum.UserInputType.Keyboard) then if (v89.KeyCode.Name==v51) then v59.Visible= not v59.Visible;end end break;end end end);v69(v52);local v70={};v70.__index=v70;v70.Show=function(v92) v59.Visible=true;end;v70.Hide=function(v94) v59.Visible=false;end;v70.Toggle=function(v96) v59.Visible= not v59.Visible;end;v70.SetTitle=function(v98,v99) v62.Text=v99;end;v70.Destroy=function(v101) v58:Destroy();end;v70.SetTheme=function(v102,v103) v69(v103);end;v70.SetActiveTab=function(v104,v105) v67(v105._id);end;v70.AddTab=function(v106,v107) v107=v107 or {} ;v57=v57 + (1 -0) ;local v108="tab_"   .. v57 ;local v109=v107.Name or ("Tab "   .. v57) ;local v110=v8("ScrollingFrame",{Size=UDim2.new(98 -(11 + 86) ,0,2 -1 ,285 -(175 + 110) ),BackgroundTransparency=1,BorderSizePixel=0 -0 ,ScrollBarThickness=4,ScrollBarImageColor3=v5.SilverDim,CanvasSize=UDim2.new(0 -0 ,1796 -(503 + 1293) ,0 -0 ,0),AutomaticCanvasSize=Enum.AutomaticSize.Y,Visible=false,Parent=v65});v110:SetAttribute("TabLabel",v109);v11(v110,v7.ContentPadding,v7.ContentPadding,v7.ContentPadding,v7.ContentPadding);v12(v110);v54[v108]=v110;table.insert(v55,v108);if ( #v55==1) then v56=v108;end v68();local v112={_id=v108,_page=v110,_order=0 + 0 };v112.__index=v112;v112._nextOrder=function(v122) local v123=1061 -(810 + 251) ;while true do if (v123==(0 + 0)) then v122._order=v122._order + 1 ;return v122._order;end end end;v112.AddSection=function(v124,v125) v8("TextLabel",{Text=v125,Font=v6.Header,TextSize=4 + 9 ,TextColor3=v5.Primary,BackgroundTransparency=1,Size=UDim2.new(1 + 0 ,533 -(43 + 490) ,733 -(711 + 22) ,24),TextXAlignment=Enum.TextXAlignment.Left,LayoutOrder=v124:_nextOrder(),Parent=v124._page});end;v112.AddLabel=function(v126,v127) local v128=0;local v129;local v130;local v131;while true do local v176=0 -0 ;while true do if (0==v176) then if (v128==(859 -(240 + 619))) then v127=v127 or {} ;v129=v8("Frame",{Size=UDim2.new(1 + 0 ,0,0,v7.RowHeight),BackgroundColor3=v5.Panel,BorderSizePixel=0 -0 ,LayoutOrder=v126:_nextOrder(),Parent=v126._page});v128=1;end if ((1 + 2)==v128) then v130=v8("TextLabel",{Text=v127.Value or "" ,Font=v6.Body,TextSize=14,TextColor3=v5.Text,BackgroundTransparency=1745 -(1344 + 400) ,Size=UDim2.new(0.6,405 -(255 + 150) ,1,0 + 0 ),Position=UDim2.new(0.4 + 0 ,0 -0 ,0 -0 ,0),TextXAlignment=Enum.TextXAlignment.Right,Parent=v129});v131={};v128=1743 -(404 + 1335) ;end v176=407 -(183 + 223) ;end if (v176==(1 -0)) then if (v128==(2 + 0)) then v11(v129,0,10,0,4 + 6 );v8("TextLabel",{Text=string.upper(v127.Text or "" ),Font=v6.Header,TextSize=347 -(10 + 327) ,TextColor3=v5.TextDim,BackgroundTransparency=1 + 0 ,Size=UDim2.new(338.4 -(118 + 220) ,0,1 + 0 ,449 -(108 + 341) ),TextXAlignment=Enum.TextXAlignment.Left,Parent=v129});v128=2 + 1 ;end if (v128==(16 -12)) then local v254=1493 -(711 + 782) ;while true do if (v254==(0 -0)) then v131.Set=function(v286,v287) v130.Text=tostring(v287);end;return v131;end end end v176=2;end if (v176==(471 -(270 + 199))) then if ((1 + 0)==v128) then v9(v129,3);v10(v129);v128=1821 -(580 + 1239) ;end break;end end end end;v112.AddButton=function(v132,v133) local v134=0 -0 ;local v135;while true do local v177=0;while true do if (v177==(0 + 0)) then if ((1 + 1)==v134) then v135.MouseEnter:Connect(function() v135.BackgroundColor3=v5.Button;end);v135.MouseLeave:Connect(function() v135.BackgroundColor3=v5.Panel;end);v134=2 + 1 ;end if (v134==(7 -4)) then local v255=0 + 0 ;while true do if (v255==0) then if v133.Callback then v135.MouseButton1Click:Connect(v133.Callback);end return v135;end end end v177=1;end if (v177==(1168 -(645 + 522))) then if (0==v134) then v133=v133 or {} ;v135=v8("TextButton",{Text=v133.Text or "Button" ,Font=v6.Body,TextSize=1802 -(1010 + 780) ,TextColor3=v5.TextBright,BackgroundColor3=v5.Panel,Size=UDim2.new(1 + 0 ,0 -0 ,0 -0 ,v7.ButtonHeight),BorderSizePixel=1836 -(1045 + 791) ,AutoButtonColor=false,LayoutOrder=v132:_nextOrder(),Parent=v132._page});v134=2 -1 ;end if (v134==(1 -0)) then v9(v135,508 -(351 + 154) );v10(v135);v134=2;end break;end end end end;v112.AddToggle=function(v136,v137) local v138=0;local v139;local v140;local v141;local v142;while true do local v178=1574 -(1281 + 293) ;while true do if (v178==0) then if (v138==4) then return v142;end if (v138==(268 -(28 + 238))) then local v256=0 -0 ;while true do if (v256==(1560 -(1381 + 178))) then v9(v141,11 + 0 );v138=3;break;end if (v256==(0 + 0)) then v8("TextLabel",{Text=v137.Text or "Toggle" ,Font=v6.Body,TextSize=6 + 6 ,TextColor3=v5.Text,BackgroundTransparency=3 -2 ,Size=UDim2.new(0.7 + 0 ,470 -(381 + 89) ,1 + 0 ,0 + 0 ),TextXAlignment=Enum.TextXAlignment.Left,Parent=v140});v141=v8("TextButton",{Text=(v139 and "ON") or "OFF" ,Font=v6.Mono,TextSize=17 -7 ,TextColor3=(v139 and v5.AccentGlow) or v5.TextDim ,BackgroundColor3=(v139 and v5.Accent) or v5.Card ,Size=UDim2.new(0,48,1156 -(1074 + 82) ,47 -25 ),Position=UDim2.new(1, -48,1784.5 -(214 + 1570) , -(1466 -(990 + 465))),AutoButtonColor=false,Parent=v140});v256=1 + 0 ;end end end v178=1;end if ((1 + 1)==v178) then if (v138==1) then v9(v140,3);v10(v140);v11(v140,0 + 0 ,39 -29 ,0,1736 -(1668 + 58) );v138=628 -(512 + 114) ;end break;end if (v178==(2 -1)) then if (v138==(5 -2)) then local v257=0 -0 ;while true do if (v257==0) then v141.MouseButton1Click:Connect(function() local v289=0;while true do if (v289==(1 + 0)) then v141.TextColor3=(v139 and v5.AccentGlow) or v5.TextDim ;v141.BackgroundColor3=(v139 and v5.Accent) or v5.Card ;v289=2;end if (v289==(0 + 0)) then v139= not v139;v141.Text=(v139 and "ON") or "OFF" ;v289=1 + 0 ;end if (v289==(6 -4)) then if v137.Callback then v137.Callback(v139);end break;end end end);v142={};v257=1995 -(109 + 1885) ;end if (v257==(1470 -(1269 + 200))) then v142.Set=function(v290,v291) local v292=0 -0 ;local v293;while true do if (v292==(815 -(98 + 717))) then v293=0;while true do if (v293==(826 -(802 + 24))) then v139=v291;v141.Text=(v139 and "ON") or "OFF" ;v293=1 -0 ;end if ((1 -0)==v293) then v141.TextColor3=(v139 and v5.AccentGlow) or v5.TextDim ;v141.BackgroundColor3=(v139 and v5.Accent) or v5.Card ;break;end end break;end end end;v138=1 + 3 ;break;end end end if (v138==(0 + 0)) then v137=v137 or {} ;v139=v137.Default or false ;v140=v8("Frame",{Size=UDim2.new(1 + 0 ,0 + 0 ,0 -0 ,v7.RowHeight),BackgroundColor3=v5.Panel,BorderSizePixel=0,LayoutOrder=v136:_nextOrder(),Parent=v136._page});v138=3 -2 ;end v178=1 + 1 ;end end end end;v112.AddSlider=function(v143,v144) v144=v144 or {} ;local v145=v144.Min or 0 ;local v146=v144.Max or (41 + 59) ;local v147=v144.Default or v145 ;local v148=v147;local v149,v150;if v144.Text then local v196=0;local v197;while true do if (v196==(1 + 0)) then v10(v197);v11(v197,0,8 + 2 ,0 + 0 ,1443 -(797 + 636) );v196=9 -7 ;end if (v196==2) then v8("TextLabel",{Text=string.upper(v144.Text),Font=v6.Header,TextSize=10,TextColor3=v5.TextDim,BackgroundTransparency=1,Size=UDim2.new(0.4,0,1,1619 -(1427 + 192) ),TextXAlignment=Enum.TextXAlignment.Left,Parent=v197});v150=v8("TextLabel",{Text=tostring(v147),Font=v6.Body,TextSize=5 + 9 ,TextColor3=v5.Text,BackgroundTransparency=1,Size=UDim2.new(0.6 -0 ,0 + 0 ,1 + 0 ,326 -(192 + 134) ),Position=UDim2.new(1276.4 -(316 + 960) ,0 + 0 ,0,0 + 0 ),TextXAlignment=Enum.TextXAlignment.Right,Parent=v197});break;end if (v196==0) then v197=v8("Frame",{Size=UDim2.new(1 + 0 ,0 -0 ,551 -(83 + 468) ,v7.RowHeight),BackgroundColor3=v5.Panel,BorderSizePixel=0,LayoutOrder=v143:_nextOrder(),Parent=v143._page});v9(v197,1809 -(1202 + 604) );v196=1;end end end local v151=v8("Frame",{Size=UDim2.new(4 -3 ,0,0,83 -33 ),BackgroundColor3=v5.Card,BorderSizePixel=0 -0 ,LayoutOrder=v143:_nextOrder(),Parent=v143._page});v9(v151,3);v10(v151);v11(v151,10,337 -(45 + 280) ,10 + 0 ,12);local v152=v8("Frame",{Size=UDim2.new(1 + 0 , -10,0 + 0 ,6),Position=UDim2.new(0 + 0 ,1 + 4 ,0 -0 ,1921 -(340 + 1571) ),BackgroundColor3=v5.Border,BorderSizePixel=0 + 0 ,Parent=v151});v9(v152,3);local v153=(v147-v145)/(v146-v145) ;local v154=v8("Frame",{Size=UDim2.new(v153,0,1773 -(1733 + 39) ,0 -0 ),BackgroundColor3=v5.Accent,BorderSizePixel=1034 -(125 + 909) ,Parent=v152});v9(v154,1951 -(1096 + 852) );v14(v13.accent,v154,"BackgroundColor3");local v155=v8("TextButton",{Text="",Size=UDim2.new(0,9 + 9 ,0,25 -7 ),Position=UDim2.new(v153, -(9 + 0),0.5, -(521 -(409 + 103))),BackgroundColor3=v5.Accent,BorderSizePixel=0,ZIndex=238 -(46 + 190) ,Parent=v152});v9(v155,104 -(51 + 44) );v14(v13.accent,v155,"BackgroundColor3");local v156=false;local function v157(v179) local v180=0 + 0 ;local v181;while true do if (v180==2) then v154.Size=UDim2.new(v179,1317 -(1114 + 203) ,727 -(228 + 498) ,0);v155.Position=UDim2.new(v179, -(2 + 7),0.5 + 0 , -9);v180=666 -(174 + 489) ;end if (v180==1) then v148=v181;if v150 then v150.Text=tostring(v181);end v180=2;end if ((7 -4)==v180) then if v144.Callback then v144.Callback(v181);end break;end if (v180==(1905 -(830 + 1075))) then v179=math.clamp(v179,524 -(303 + 221) ,1270 -(231 + 1038) );v181=math.floor(v145 + (v179 * (v146-v145)) );v180=1;end end end v155.MouseButton1Down:Connect(function() v156=true;end);v1.InputEnded:Connect(function(v182) if (v182.UserInputType==Enum.UserInputType.MouseButton1) then v156=false;end end);v1.InputChanged:Connect(function(v183) if (v156 and (v183.UserInputType==Enum.UserInputType.MouseMovement)) then local v211=0;local v212;local v213;local v214;local v215;while true do if ((2 + 0)==v211) then v157(v215);break;end if (v211==1) then local v259=1162 -(171 + 991) ;while true do if (v259==(4 -3)) then v211=5 -3 ;break;end if (v259==0) then v214=v183.Position.X;v215=(v214-v212)/v213 ;v259=2 -1 ;end end end if (v211==(0 + 0)) then v212=v152.AbsolutePosition.X;v213=v152.AbsoluteSize.X;v211=3 -2 ;end end end end);if (v144.Presets and ( #v144.Presets>(0 -0))) then local v198=0 -0 ;local v199;local v200;local v201;while true do if (v198==0) then v199=0;v200=nil;v198=3 -2 ;end if (v198==1) then v201=nil;while true do if (v199==(1249 -(111 + 1137))) then for v282,v283 in ipairs(v144.Presets) do local v284=158 -(91 + 67) ;local v285;while true do if (0==v284) then v285=v8("TextButton",{Text=tostring(v283),Font=v6.Mono,TextSize=32 -21 ,TextColor3=v5.TextDim,BackgroundColor3=v5.Panel,BorderSizePixel=0,Size=UDim2.new((1 + 0)/v201 , -4,524 -(423 + 100) ,0),Position=UDim2.new((v282-(1 + 0))/v201 ,5 -3 ,0 + 0 ,0),Parent=v200});v9(v285,3);v284=772 -(326 + 445) ;end if (v284==(4 -3)) then v10(v285);v285.MouseButton1Click:Connect(function() local v299=(v283-v145)/(v146-v145) ;v157(v299);end);break;end end end break;end if (v199==0) then local v268=0 -0 ;while true do if ((2 -1)==v268) then v199=712 -(530 + 181) ;break;end if (v268==(881 -(614 + 267))) then v200=v8("Frame",{Size=UDim2.new(33 -(19 + 13) ,0 -0 ,0 -0 ,26),BackgroundTransparency=1,LayoutOrder=v143:_nextOrder(),Parent=v143._page});v201= #v144.Presets;v268=2 -1 ;end end end end break;end end end local v158={};v158.Set=function(v184,v185) local v186=0 + 0 ;local v187;while true do if (0==v186) then v187=(v185-v145)/(v146-v145) ;v157(v187);break;end end end;return v158;end;v112.AddTextbox=function(v160,v161) local v162=0 -0 ;local v163;local v164;while true do if (v162==(6 -3)) then local v216=1812 -(1293 + 519) ;while true do if (v216==(0 -0)) then v164=v8("TextBox",{Size=UDim2.new(2 -1 ,0 -0 ,0 -0 ,56 -32 ),Position=UDim2.new(0,0 + 0 ,0,5 + 15 ),PlaceholderText=v161.Placeholder or "Type here..." ,Font=v6.Mono,TextSize=27 -15 ,TextColor3=v5.Text,BackgroundColor3=v5.Card,ClearTextOnFocus=false,Parent=v163});v9(v164,1 + 2 );v216=1;end if (v216==1) then v162=2 + 2 ;break;end end end if (v162==0) then v161=v161 or {} ;v163=v8("Frame",{Size=UDim2.new(1 + 0 ,1096 -(709 + 387) ,1858 -(673 + 1185) ,60),BackgroundColor3=v5.Panel,BorderSizePixel=0 -0 ,LayoutOrder=v160:_nextOrder(),Parent=v160._page});v162=3 -2 ;end if (v162==(1 -0)) then v9(v163,3 + 0 );v10(v163);v162=2 + 0 ;end if (v162==2) then v11(v163,8,13 -3 ,2 + 6 ,10);v8("TextLabel",{Text=string.upper(v161.Text or "INPUT" ),Font=v6.Header,TextSize=19 -9 ,TextColor3=v5.TextDim,BackgroundTransparency=1 -0 ,Size=UDim2.new(1881 -(446 + 1434) ,0,0,1299 -(1040 + 243) ),TextXAlignment=Enum.TextXAlignment.Left,Parent=v163});v162=3;end if (v162==(11 -7)) then if v161.Callback then v164.FocusLost:Connect(function(v262) if v262 then v161.Callback(v164.Text);end end);end break;end end end;v112.AddDropdown=function(v165,v166) local v167=0;local v168;local v169;local v170;local v171;local v172;local v173;while true do if (v167==3) then local v217=0;while true do if (v217==(1848 -(559 + 1288))) then v173=v8("Frame",{Size=UDim2.new(1931.55 -(609 + 1322) ,0,454 -(13 + 441) , #v168 * (89 -65) ),Position=UDim2.new(0.4,0 -0 ,4 -3 ,2),BackgroundColor3=v5.Card,BorderSizePixel=0 + 0 ,Visible=false,ZIndex=36 -26 ,Parent=v171});v167=2 + 2 ;break;end if (v217==(0 + 0)) then v172=v8("TextButton",{Text=v169   .. " ▼" ,Font=v6.Body,TextSize=35 -23 ,TextColor3=v5.Text,BackgroundColor3=v5.Card,Size=UDim2.new(0.55 + 0 ,0 -0 ,0 + 0 ,14 + 10 ),Position=UDim2.new(0.4 + 0 ,0 + 0 ,0.5 + 0 , -(445 -(153 + 280))),AutoButtonColor=false,Parent=v171});v9(v172,3);v217=2 -1 ;end end end if (v167==(4 + 0)) then v9(v173,3);v10(v173);for v228,v229 in ipairs(v168) do local v230=0;local v231;while true do if (v230==0) then v231=v8("TextButton",{Text=v229,Font=v6.Body,TextSize=5 + 6 ,TextColor3=v5.Text,BackgroundColor3=v5.Card,Size=UDim2.new(1 + 0 ,0,0,22 + 2 ),Position=UDim2.new(0,0 + 0 ,0,(v228-1) * 24 ),AutoButtonColor=false,ZIndex=16 -5 ,Parent=v173});v231.MouseEnter:Connect(function() v231.BackgroundColor3=v5.Button;end);v230=1;end if (v230==(1 + 0)) then v231.MouseLeave:Connect(function() v231.BackgroundColor3=v5.Card;end);v231.MouseButton1Click:Connect(function() local v273=667 -(89 + 578) ;while true do if (v273==(1 + 0)) then v173.Visible=false;v170=false;v273=2;end if (v273==2) then if v166.Callback then v166.Callback(v229);end break;end if ((0 -0)==v273) then v169=v229;v172.Text=v229   .. " ▼" ;v273=1050 -(572 + 477) ;end end end);break;end end end v167=1 + 4 ;end if (v167==0) then v166=v166 or {} ;v168=v166.Options or {} ;v169=v166.Default or v168[1 + 0 ] or "" ;v167=1 + 0 ;end if (v167==(88 -(84 + 2))) then local v218=0 -0 ;while true do if (v218==(0 + 0)) then v10(v171);v11(v171,842 -(497 + 345) ,10,0 + 0 ,10);v218=1 + 0 ;end if (v218==(1334 -(605 + 728))) then v8("TextLabel",{Text=string.upper(v166.Text or "SELECT" ),Font=v6.Header,TextSize=8 + 2 ,TextColor3=v5.TextDim,BackgroundTransparency=1 -0 ,Size=UDim2.new(0.4 + 0 ,0,1,0 -0 ),TextXAlignment=Enum.TextXAlignment.Left,Parent=v171});v167=3;break;end end end if (v167==(5 + 0)) then v172.MouseButton1Click:Connect(function() local v232=0 -0 ;while true do if (v232==(0 + 0)) then v170= not v170;v173.Visible=v170;break;end end end);break;end if (v167==1) then local v219=0;while true do if ((490 -(457 + 32))==v219) then v9(v171,2 + 1 );v167=2;break;end if (v219==(1402 -(832 + 570))) then v170=false;v171=v8("Frame",{Size=UDim2.new(1,0 + 0 ,0 + 0 ,v7.RowHeight),BackgroundColor3=v5.Panel,BorderSizePixel=0,ClipsDescendants=false,LayoutOrder=v165:_nextOrder(),Parent=v165._page});v219=1;end end end end end;return v112;end;return setmetatable(v70,v70);end;return v15;
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local Player = Players.LocalPlayer
+local PlayerGui = Player:WaitForChild("PlayerGui")
 
---dm _.hell._ to know how to add sections...
+-- ═══════════════════════════════════════════
+-- THEMES
+-- ═══════════════════════════════════════════
+local THEMES = {
+    crimson = {
+        Name = "Crimson", Desc = "Deep blood red",
+        Accent = Color3.fromRGB(130, 40, 40),
+        AccentGlow = Color3.fromRGB(160, 50, 50),
+        Primary = Color3.fromRGB(170, 100, 100),
+    },
+    obsidian = {
+        Name = "Obsidian", Desc = "Dark ash with red glow",
+        Accent = Color3.fromRGB(75, 45, 45),
+        AccentGlow = Color3.fromRGB(140, 60, 60),
+        Primary = Color3.fromRGB(135, 105, 105),
+    },
+    noir = {
+        Name = "Noir", Desc = "Muted violet charcoal",
+        Accent = Color3.fromRGB(110, 95, 135),
+        AccentGlow = Color3.fromRGB(95, 80, 120),
+        Primary = Color3.fromRGB(135, 140, 165),
+    },
+    ruby = {
+        Name = "Ruby", Desc = "Soft deep red",
+        Accent = Color3.fromRGB(150, 70, 70),
+        AccentGlow = Color3.fromRGB(175, 85, 85),
+        Primary = Color3.fromRGB(190, 125, 125),
+    },
+    forest = {
+        Name = "Forest", Desc = "Calm natural green",
+        Accent = Color3.fromRGB(65, 125, 85),
+        AccentGlow = Color3.fromRGB(80, 150, 105),
+        Primary = Color3.fromRGB(120, 175, 140),
+    },
+    ocean = {
+        Name = "Ocean", Desc = "Balanced deep blue",
+        Accent = Color3.fromRGB(70, 90, 150),
+        AccentGlow = Color3.fromRGB(85, 110, 175),
+        Primary = Color3.fromRGB(125, 140, 195),
+    },
+    sand = {
+        Name = "Sand", Desc = "Warm neutral gold",
+        Accent = Color3.fromRGB(155, 125, 70),
+        AccentGlow = Color3.fromRGB(180, 145, 85),
+        Primary = Color3.fromRGB(200, 175, 125),
+    },
+}
+
+-- ═══════════════════════════════════════════
+-- COLORS & FONTS
+-- ═══════════════════════════════════════════
+local Colors = {
+    Background = Color3.fromRGB(18, 18, 22),
+    Panel = Color3.fromRGB(24, 24, 30),
+    PanelHeader = Color3.fromRGB(12, 12, 16),
+    Card = Color3.fromRGB(28, 28, 34),
+    Text = Color3.fromRGB(175, 172, 185),
+    TextDim = Color3.fromRGB(90, 88, 100),
+    TextBright = Color3.fromRGB(200, 198, 210),
+    Border = Color3.fromRGB(42, 42, 52),
+    TabActive = Color3.fromRGB(28, 28, 34),
+    TabInactive = Color3.fromRGB(20, 20, 26),
+    SilverDim = Color3.fromRGB(50, 50, 60),
+    Button = Color3.fromRGB(35, 35, 45),
+    Primary = Color3.fromRGB(120, 128, 155),
+    Accent = Color3.fromRGB(120, 85, 130),
+    AccentGlow = Color3.fromRGB(100, 58, 110),
+}
+
+local Fonts = {
+    Title = Enum.Font.Antique,
+    Header = Enum.Font.Antique,
+    Body = Enum.Font.Garamond,
+    Mono = Enum.Font.Code,
+    Tab = Enum.Font.Antique,
+}
+
+local Sizes = {
+    HeaderHeight = 48,
+    TabHeight = 32,
+    FooterHeight = 32,
+    ContentPadding = 16,
+    CornerRadius = 4,
+    BorderWidth = 1,
+    RowHeight = 34,
+    RowSpacing = 6,
+    ButtonHeight = 36,
+}
+
+-- ═══════════════════════════════════════════
+-- INTERNAL HELPERS
+-- ═══════════════════════════════════════════
+local function create(className, props, children)
+    local inst = Instance.new(className)
+    for k, v in pairs(props or {}) do inst[k] = v end
+    for _, c in ipairs(children or {}) do c.Parent = inst end
+    return inst
+end
+
+local function addCorner(parent, r)
+    return create("UICorner", { CornerRadius = UDim.new(0, r or Sizes.CornerRadius), Parent = parent })
+end
+
+local function addStroke(parent, color, thickness)
+    return create("UIStroke", { Color = color or Colors.Border, Thickness = thickness or Sizes.BorderWidth, Parent = parent })
+end
+
+local function addPadding(parent, t, r, b, l)
+    return create("UIPadding", {
+        PaddingTop = UDim.new(0, t or 0),
+        PaddingRight = UDim.new(0, r or 0),
+        PaddingBottom = UDim.new(0, b or 0),
+        PaddingLeft = UDim.new(0, l or 0),
+        Parent = parent,
+    })
+end
+
+local function addListLayout(parent, spacing)
+    return create("UIListLayout", {
+        SortOrder = Enum.SortOrder.LayoutOrder,
+        Padding = UDim.new(0, spacing or Sizes.RowSpacing),
+        Parent = parent,
+    })
+end
+
+-- ═══════════════════════════════════════════
+-- THEME ENGINE
+-- ═══════════════════════════════════════════
+local themedElements = { accent = {}, accentGlow = {}, primary = {} }
+
+local function registerThemed(list, inst, prop)
+    table.insert(list, { inst = inst, prop = prop })
+end
+
+-- ═══════════════════════════════════════════
+-- LIBRARY
+-- ═══════════════════════════════════════════
+local XQTZ = {}
+XQTZ.__index = XQTZ
+
+function XQTZ:AddTheme(key, theme)
+    THEMES[key] = theme
+end
+
+function XQTZ:CreateWindow(options)
+    options = options or {}
+    local title = options.Title or "XQTZ CORE"
+    local width = (options.Size and options.Size[1]) or 520
+    local height = (options.Size and options.Size[2]) or 480
+    local themeKey = options.Theme or "crimson"
+    local footerText = options.Footer or "Eendracht maakt macht"
+    local versionText = options.Version or "v1"
+    local toggleKey = options.ToggleKey or "Minus"
+
+    local currentThemeKey = themeKey
+    local tabButtonsUI = {}
+    local tabPages = {}
+    local tabOrder = {}
+    local activeTab = nil
+    local orderCounter = 0
+
+    -- Screen GUI
+    local screenGui = create("ScreenGui", {
+        Name = "XQTZ_CORE",
+        ResetOnSpawn = false,
+        ZIndexBehavior = Enum.ZIndexBehavior.Sibling,
+        Parent = PlayerGui,
+    })
+
+    -- Main Panel
+    local mainPanel = create("Frame", {
+        Name = "MainPanel",
+        Size = UDim2.new(0, width, 0, height),
+        Position = UDim2.new(0.5, -width / 2, 0.5, -height / 2),
+        BackgroundColor3 = Colors.Panel,
+        BorderSizePixel = 0,
+        Active = true,
+        Draggable = true,
+        Parent = screenGui,
+    })
+    addCorner(mainPanel)
+    addStroke(mainPanel)
+
+    -- Header
+    local header = create("Frame", {
+        Name = "Header",
+        Size = UDim2.new(1, 0, 0, Sizes.HeaderHeight),
+        BackgroundColor3 = Colors.PanelHeader,
+        BorderSizePixel = 0,
+        Parent = mainPanel,
+    })
+    addCorner(header)
+
+    local accentLine = create("Frame", {
+        Size = UDim2.new(0.5, 0, 0, 2),
+        Position = UDim2.new(0.25, 0, 0, 0),
+        BackgroundColor3 = Colors.Accent,
+        BorderSizePixel = 0,
+        Parent = header,
+    })
+    registerThemed(themedElements.accent, accentLine, "BackgroundColor3")
+
+    local titleLabel = create("TextLabel", {
+        Text = title,
+        Font = Fonts.Title,
+        TextSize = 18,
+        TextColor3 = Colors.Primary,
+        BackgroundTransparency = 1,
+        Size = UDim2.new(0.6, 0, 1, 0),
+        Position = UDim2.new(0, 32, 0, 0),
+        TextXAlignment = Enum.TextXAlignment.Left,
+        Parent = header,
+    })
+    registerThemed(themedElements.primary, titleLabel, "TextColor3")
+
+    local closeBtn = create("TextButton", {
+        Text = "×",
+        Font = Fonts.Body,
+        TextSize = 18,
+        TextColor3 = Colors.TextDim,
+        BackgroundTransparency = 1,
+        Size = UDim2.new(0, 28, 0, 28),
+        Position = UDim2.new(1, -34, 0.5, -14),
+        Parent = header,
+    })
+    closeBtn.MouseButton1Click:Connect(function()
+        mainPanel.Visible = not mainPanel.Visible
+    end)
+
+    -- Tab bar
+    local tabBar = create("Frame", {
+        Name = "TabBar",
+        Size = UDim2.new(1, 0, 0, Sizes.TabHeight),
+        Position = UDim2.new(0, 0, 0, Sizes.HeaderHeight),
+        BackgroundColor3 = Colors.TabInactive,
+        BorderSizePixel = 0,
+        Parent = mainPanel,
+    })
+
+    -- Content area
+    local contentArea = create("Frame", {
+        Name = "ContentArea",
+        Size = UDim2.new(1, 0, 1, -(Sizes.HeaderHeight + Sizes.TabHeight + Sizes.FooterHeight)),
+        Position = UDim2.new(0, 0, 0, Sizes.HeaderHeight + Sizes.TabHeight),
+        BackgroundColor3 = Colors.Card,
+        BorderSizePixel = 0,
+        ClipsDescendants = true,
+        Parent = mainPanel,
+    })
+
+    -- Footer
+    local footer = create("Frame", {
+        Size = UDim2.new(1, 0, 0, Sizes.FooterHeight),
+        Position = UDim2.new(0, 0, 1, -Sizes.FooterHeight),
+        BackgroundColor3 = Colors.PanelHeader,
+        BorderSizePixel = 0,
+        Parent = mainPanel,
+    })
+    create("TextLabel", {
+        Text = footerText,
+        Font = Fonts.Body,
+        TextSize = 11,
+        TextColor3 = Colors.TextDim,
+        BackgroundTransparency = 1,
+        Size = UDim2.new(0.75, 0, 1, 0),
+        Position = UDim2.new(0, 12, 0, 0),
+        TextXAlignment = Enum.TextXAlignment.Left,
+        Parent = footer,
+    })
+    create("TextLabel", {
+        Text = versionText,
+        Font = Fonts.Mono,
+        TextSize = 9,
+        TextColor3 = Colors.TextDim,
+        BackgroundTransparency = 1,
+        Size = UDim2.new(0.2, 0, 1, 0),
+        Position = UDim2.new(0.8, 0, 0, 0),
+        TextXAlignment = Enum.TextXAlignment.Right,
+        Parent = footer,
+    })
+
+    -- ═══════════════════════════════════
+    -- TAB SWITCHING
+    -- ═══════════════════════════════════
+    local function switchTab(id)
+        activeTab = id
+        for tabId, data in pairs(tabButtonsUI) do
+            local isActive = (tabId == id)
+            data.button.BackgroundColor3 = isActive and Colors.TabActive or Colors.TabInactive
+            data.button.TextColor3 = isActive and Colors.Primary or Colors.TextDim
+            data.indicator.Visible = isActive
+        end
+        for pageId, pg in pairs(tabPages) do
+            pg.Visible = (pageId == id)
+        end
+    end
+
+    local function rebuildTabBar()
+        for _, child in ipairs(tabBar:GetChildren()) do
+            if child:IsA("TextButton") then child:Destroy() end
+        end
+        tabButtonsUI = {}
+        local count = #tabOrder
+        for i, tabId in ipairs(tabOrder) do
+            local tabData = tabPages[tabId]
+            if not tabData then continue end
+            local label = tabData:GetAttribute("TabLabel") or tabId
+            local btn = create("TextButton", {
+                Name = "Tab_" .. tabId,
+                Text = label,
+                Font = Fonts.Tab,
+                TextSize = 11,
+                TextColor3 = Colors.TextDim,
+                BackgroundColor3 = Colors.TabInactive,
+                BorderSizePixel = 0,
+                Size = UDim2.new(1 / count, 0, 1, 0),
+                Position = UDim2.new((i - 1) / count, 0, 0, 0),
+                AutoButtonColor = false,
+                Parent = tabBar,
+            })
+            local indicator = create("Frame", {
+                Size = UDim2.new(0.6, 0, 0, 1),
+                Position = UDim2.new(0.2, 0, 1, -1),
+                BackgroundColor3 = Colors.Accent,
+                BorderSizePixel = 0,
+                Visible = (tabId == activeTab),
+                Parent = btn,
+            })
+            registerThemed(themedElements.accent, indicator, "BackgroundColor3")
+            tabButtonsUI[tabId] = { button = btn, indicator = indicator }
+            btn.MouseButton1Click:Connect(function()
+                switchTab(tabId)
+            end)
+        end
+        if activeTab then switchTab(activeTab) end
+    end
+
+    -- ═══════════════════════════════════
+    -- APPLY THEME
+    -- ═══════════════════════════════════
+    local function applyTheme(key)
+        local theme = THEMES[key]
+        if not theme then return end
+        currentThemeKey = key
+        Colors.Primary = theme.Primary
+        Colors.Accent = theme.Accent
+        Colors.AccentGlow = theme.AccentGlow
+        for _, entry in ipairs(themedElements.primary) do
+            pcall(function() entry.inst[entry.prop] = theme.Primary end)
+        end
+        for _, entry in ipairs(themedElements.accent) do
+            pcall(function() entry.inst[entry.prop] = theme.Accent end)
+        end
+        for _, entry in ipairs(themedElements.accentGlow) do
+            pcall(function() entry.inst[entry.prop] = theme.AccentGlow end)
+        end
+    end
+
+    -- ═══════════════════════════════════
+    -- KEYBIND
+    -- ═══════════════════════════════════
+    UserInputService.InputBegan:Connect(function(input, gameProcessed)
+        if gameProcessed then return end
+        if input.UserInputType == Enum.UserInputType.Keyboard then
+            if input.KeyCode.Name == toggleKey then
+                mainPanel.Visible = not mainPanel.Visible
+            end
+        end
+    end)
+
+    -- Apply default theme
+    applyTheme(currentThemeKey)
+
+    -- ═══════════════════════════════════
+    -- WINDOW OBJECT
+    -- ═══════════════════════════════════
+    local Window = {}
+    Window.__index = Window
+
+    function Window:Show() mainPanel.Visible = true end
+    function Window:Hide() mainPanel.Visible = false end
+    function Window:Toggle() mainPanel.Visible = not mainPanel.Visible end
+    function Window:SetTitle(t) titleLabel.Text = t end
+    function Window:Destroy() screenGui:Destroy() end
+    function Window:SetTheme(key) applyTheme(key) end
+    function Window:SetActiveTab(tabObj) switchTab(tabObj._id) end
+
+    function Window:AddTab(opts)
+        opts = opts or {}
+        orderCounter = orderCounter + 1
+        local tabId = "tab_" .. orderCounter
+        local tabName = opts.Name or ("Tab " .. orderCounter)
+
+        local page = create("ScrollingFrame", {
+            Size = UDim2.new(1, 0, 1, 0),
+            BackgroundTransparency = 1,
+            BorderSizePixel = 0,
+            ScrollBarThickness = 4,
+            ScrollBarImageColor3 = Colors.SilverDim,
+            CanvasSize = UDim2.new(0, 0, 0, 0),
+            AutomaticCanvasSize = Enum.AutomaticSize.Y,
+            Visible = false,
+            Parent = contentArea,
+        })
+        page:SetAttribute("TabLabel", tabName)
+        addPadding(page, Sizes.ContentPadding, Sizes.ContentPadding, Sizes.ContentPadding, Sizes.ContentPadding)
+        addListLayout(page)
+
+        tabPages[tabId] = page
+        table.insert(tabOrder, tabId)
+
+        if #tabOrder == 1 then
+            activeTab = tabId
+        end
+        rebuildTabBar()
+
+        -- ═══════════════════════════════
+        -- TAB OBJECT (add elements here)
+        -- ═══════════════════════════════
+        local Tab = { _id = tabId, _page = page, _order = 0 }
+        Tab.__index = Tab
+
+        function Tab:_nextOrder()
+            self._order = self._order + 1
+            return self._order
+        end
+
+        function Tab:AddSection(text)
+            create("TextLabel", {
+                Text = text,
+                Font = Fonts.Header,
+                TextSize = 13,
+                TextColor3 = Colors.Primary,
+                BackgroundTransparency = 1,
+                Size = UDim2.new(1, 0, 0, 24),
+                TextXAlignment = Enum.TextXAlignment.Left,
+                LayoutOrder = self:_nextOrder(),
+                Parent = self._page,
+            })
+        end
+
+        function Tab:AddLabel(opts)
+            opts = opts or {}
+            local row = create("Frame", {
+                Size = UDim2.new(1, 0, 0, Sizes.RowHeight),
+                BackgroundColor3 = Colors.Panel,
+                BorderSizePixel = 0,
+                LayoutOrder = self:_nextOrder(),
+                Parent = self._page,
+            })
+            addCorner(row, 3)
+            addStroke(row)
+            addPadding(row, 0, 10, 0, 10)
+            create("TextLabel", {
+                Text = string.upper(opts.Text or ""),
+                Font = Fonts.Header,
+                TextSize = 10,
+                TextColor3 = Colors.TextDim,
+                BackgroundTransparency = 1,
+                Size = UDim2.new(0.4, 0, 1, 0),
+                TextXAlignment = Enum.TextXAlignment.Left,
+                Parent = row,
+            })
+            local valueLabel = create("TextLabel", {
+                Text = opts.Value or "",
+                Font = Fonts.Body,
+                TextSize = 14,
+                TextColor3 = Colors.Text,
+                BackgroundTransparency = 1,
+                Size = UDim2.new(0.6, 0, 1, 0),
+                Position = UDim2.new(0.4, 0, 0, 0),
+                TextXAlignment = Enum.TextXAlignment.Right,
+                Parent = row,
+            })
+            local obj = {}
+            function obj:Set(val) valueLabel.Text = tostring(val) end
+            return obj
+        end
+
+        function Tab:AddButton(opts)
+            opts = opts or {}
+            local btn = create("TextButton", {
+                Text = opts.Text or "Button",
+                Font = Fonts.Body,
+                TextSize = 12,
+                TextColor3 = Colors.TextBright,
+                BackgroundColor3 = Colors.Panel,
+                Size = UDim2.new(1, 0, 0, Sizes.ButtonHeight),
+                BorderSizePixel = 0,
+                AutoButtonColor = false,
+                LayoutOrder = self:_nextOrder(),
+                Parent = self._page,
+            })
+            addCorner(btn, 3)
+            addStroke(btn)
+            btn.MouseEnter:Connect(function() btn.BackgroundColor3 = Colors.Button end)
+            btn.MouseLeave:Connect(function() btn.BackgroundColor3 = Colors.Panel end)
+            if opts.Callback then
+                btn.MouseButton1Click:Connect(opts.Callback)
+            end
+            return btn
+        end
+
+        function Tab:AddToggle(opts)
+            opts = opts or {}
+            local enabled = opts.Default or false
+            local row = create("Frame", {
+                Size = UDim2.new(1, 0, 0, Sizes.RowHeight),
+                BackgroundColor3 = Colors.Panel,
+                BorderSizePixel = 0,
+                LayoutOrder = self:_nextOrder(),
+                Parent = self._page,
+            })
+            addCorner(row, 3)
+            addStroke(row)
+            addPadding(row, 0, 10, 0, 10)
+            create("TextLabel", {
+                Text = opts.Text or "Toggle",
+                Font = Fonts.Body,
+                TextSize = 12,
+                TextColor3 = Colors.Text,
+                BackgroundTransparency = 1,
+                Size = UDim2.new(0.7, 0, 1, 0),
+                TextXAlignment = Enum.TextXAlignment.Left,
+                Parent = row,
+            })
+            local toggleBtn = create("TextButton", {
+                Text = enabled and "ON" or "OFF",
+                Font = Fonts.Mono,
+                TextSize = 10,
+                TextColor3 = enabled and Colors.AccentGlow or Colors.TextDim,
+                BackgroundColor3 = enabled and Colors.Accent or Colors.Card,
+                Size = UDim2.new(0, 48, 0, 22),
+                Position = UDim2.new(1, -48, 0.5, -11),
+                AutoButtonColor = false,
+                Parent = row,
+            })
+            addCorner(toggleBtn, 11)
+            toggleBtn.MouseButton1Click:Connect(function()
+                enabled = not enabled
+                toggleBtn.Text = enabled and "ON" or "OFF"
+                toggleBtn.TextColor3 = enabled and Colors.AccentGlow or Colors.TextDim
+                toggleBtn.BackgroundColor3 = enabled and Colors.Accent or Colors.Card
+                if opts.Callback then opts.Callback(enabled) end
+            end)
+            local obj = {}
+            function obj:Set(val)
+                enabled = val
+                toggleBtn.Text = enabled and "ON" or "OFF"
+                toggleBtn.TextColor3 = enabled and Colors.AccentGlow or Colors.TextDim
+                toggleBtn.BackgroundColor3 = enabled and Colors.Accent or Colors.Card
+            end
+            return obj
+        end
+
+        function Tab:AddSlider(opts)
+            opts = opts or {}
+            local min = opts.Min or 0
+            local max = opts.Max or 100
+            local default = opts.Default or min
+            local currentValue = default
+
+            local _, valueLabel
+            if opts.Text then
+                local row = create("Frame", {
+                    Size = UDim2.new(1, 0, 0, Sizes.RowHeight),
+                    BackgroundColor3 = Colors.Panel,
+                    BorderSizePixel = 0,
+                    LayoutOrder = self:_nextOrder(),
+                    Parent = self._page,
+                })
+                addCorner(row, 3)
+                addStroke(row)
+                addPadding(row, 0, 10, 0, 10)
+                create("TextLabel", {
+                    Text = string.upper(opts.Text),
+                    Font = Fonts.Header,
+                    TextSize = 10,
+                    TextColor3 = Colors.TextDim,
+                    BackgroundTransparency = 1,
+                    Size = UDim2.new(0.4, 0, 1, 0),
+                    TextXAlignment = Enum.TextXAlignment.Left,
+                    Parent = row,
+                })
+                valueLabel = create("TextLabel", {
+                    Text = tostring(default),
+                    Font = Fonts.Body,
+                    TextSize = 14,
+                    TextColor3 = Colors.Text,
+                    BackgroundTransparency = 1,
+                    Size = UDim2.new(0.6, 0, 1, 0),
+                    Position = UDim2.new(0.4, 0, 0, 0),
+                    TextXAlignment = Enum.TextXAlignment.Right,
+                    Parent = row,
+                })
+            end
+
+            local sliderFrame = create("Frame", {
+                Size = UDim2.new(1, 0, 0, 50),
+                BackgroundColor3 = Colors.Card,
+                BorderSizePixel = 0,
+                LayoutOrder = self:_nextOrder(),
+                Parent = self._page,
+            })
+            addCorner(sliderFrame, 3)
+            addStroke(sliderFrame)
+            addPadding(sliderFrame, 10, 12, 10, 12)
+
+            local track = create("Frame", {
+                Size = UDim2.new(1, -10, 0, 6),
+                Position = UDim2.new(0, 5, 0, 10),
+                BackgroundColor3 = Colors.Border,
+                BorderSizePixel = 0,
+                Parent = sliderFrame,
+            })
+            addCorner(track, 3)
+
+            local ratio = (default - min) / (max - min)
+            local fill = create("Frame", {
+                Size = UDim2.new(ratio, 0, 1, 0),
+                BackgroundColor3 = Colors.Accent,
+                BorderSizePixel = 0,
+                Parent = track,
+            })
+            addCorner(fill, 3)
+            registerThemed(themedElements.accent, fill, "BackgroundColor3")
+
+            local knob = create("TextButton", {
+                Text = "",
+                Size = UDim2.new(0, 18, 0, 18),
+                Position = UDim2.new(ratio, -9, 0.5, -9),
+                BackgroundColor3 = Colors.Accent,
+                BorderSizePixel = 0,
+                ZIndex = 2,
+                Parent = track,
+            })
+            addCorner(knob, 9)
+            registerThemed(themedElements.accent, knob, "BackgroundColor3")
+
+            local dragging = false
+
+            local function updateSlider(r)
+                r = math.clamp(r, 0, 1)
+                local value = math.floor(min + r * (max - min))
+                currentValue = value
+                if valueLabel then valueLabel.Text = tostring(value) end
+                fill.Size = UDim2.new(r, 0, 1, 0)
+                knob.Position = UDim2.new(r, -9, 0.5, -9)
+                if opts.Callback then opts.Callback(value) end
+            end
+
+            knob.MouseButton1Down:Connect(function() dragging = true end)
+            UserInputService.InputEnded:Connect(function(input)
+                if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                    dragging = false
+                end
+            end)
+            UserInputService.InputChanged:Connect(function(input)
+                if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+                    local trackPos = track.AbsolutePosition.X
+                    local trackWidth = track.AbsoluteSize.X
+                    local mouseX = input.Position.X
+                    local r = (mouseX - trackPos) / trackWidth
+                    updateSlider(r)
+                end
+            end)
+
+            -- Presets
+            if opts.Presets and #opts.Presets > 0 then
+                local presetFrame = create("Frame", {
+                    Size = UDim2.new(1, 0, 0, 26),
+                    BackgroundTransparency = 1,
+                    LayoutOrder = self:_nextOrder(),
+                    Parent = self._page,
+                })
+                local count = #opts.Presets
+                for i, preset in ipairs(opts.Presets) do
+                    local pbtn = create("TextButton", {
+                        Text = tostring(preset),
+                        Font = Fonts.Mono,
+                        TextSize = 11,
+                        TextColor3 = Colors.TextDim,
+                        BackgroundColor3 = Colors.Panel,
+                        BorderSizePixel = 0,
+                        Size = UDim2.new(1 / count, -4, 1, 0),
+                        Position = UDim2.new((i - 1) / count, 2, 0, 0),
+                        Parent = presetFrame,
+                    })
+                    addCorner(pbtn, 3)
+                    addStroke(pbtn)
+                    pbtn.MouseButton1Click:Connect(function()
+                        local r = (preset - min) / (max - min)
+                        updateSlider(r)
+                    end)
+                end
+            end
+
+            local obj = {}
+            function obj:Set(val)
+                local r = (val - min) / (max - min)
+                updateSlider(r)
+            end
+            return obj
+        end
+
+        function Tab:AddTextbox(opts)
+            opts = opts or {}
+            local row = create("Frame", {
+                Size = UDim2.new(1, 0, 0, 60),
+                BackgroundColor3 = Colors.Panel,
+                BorderSizePixel = 0,
+                LayoutOrder = self:_nextOrder(),
+                Parent = self._page,
+            })
+            addCorner(row, 3)
+            addStroke(row)
+            addPadding(row, 8, 10, 8, 10)
+            create("TextLabel", {
+                Text = string.upper(opts.Text or "INPUT"),
+                Font = Fonts.Header,
+                TextSize = 10,
+                TextColor3 = Colors.TextDim,
+                BackgroundTransparency = 1,
+                Size = UDim2.new(1, 0, 0, 16),
+                TextXAlignment = Enum.TextXAlignment.Left,
+                Parent = row,
+            })
+            local inputBox = create("TextBox", {
+                Size = UDim2.new(1, 0, 0, 24),
+                Position = UDim2.new(0, 0, 0, 20),
+                PlaceholderText = opts.Placeholder or "Type here...",
+                Font = Fonts.Mono,
+                TextSize = 12,
+                TextColor3 = Colors.Text,
+                BackgroundColor3 = Colors.Card,
+                ClearTextOnFocus = false,
+                Parent = row,
+            })
+            addCorner(inputBox, 3)
+            if opts.Callback then
+                inputBox.FocusLost:Connect(function(enterPressed)
+                    if enterPressed then
+                        opts.Callback(inputBox.Text)
+                    end
+                end)
+            end
+        end
+
+        function Tab:AddDropdown(opts)
+            opts = opts or {}
+            local options = opts.Options or {}
+            local selected = opts.Default or (options[1] or "")
+            local expanded = false
+
+            local container = create("Frame", {
+                Size = UDim2.new(1, 0, 0, Sizes.RowHeight),
+                BackgroundColor3 = Colors.Panel,
+                BorderSizePixel = 0,
+                ClipsDescendants = false,
+                LayoutOrder = self:_nextOrder(),
+                Parent = self._page,
+            })
+            addCorner(container, 3)
+            addStroke(container)
+            addPadding(container, 0, 10, 0, 10)
+
+            create("TextLabel", {
+                Text = string.upper(opts.Text or "SELECT"),
+                Font = Fonts.Header,
+                TextSize = 10,
+                TextColor3 = Colors.TextDim,
+                BackgroundTransparency = 1,
+                Size = UDim2.new(0.4, 0, 1, 0),
+                TextXAlignment = Enum.TextXAlignment.Left,
+                Parent = container,
+            })
+
+            local selectedBtn = create("TextButton", {
+                Text = selected .. " ▼",
+                Font = Fonts.Body,
+                TextSize = 12,
+                TextColor3 = Colors.Text,
+                BackgroundColor3 = Colors.Card,
+                Size = UDim2.new(0.55, 0, 0, 24),
+                Position = UDim2.new(0.4, 0, 0.5, -12),
+                AutoButtonColor = false,
+                Parent = container,
+            })
+            addCorner(selectedBtn, 3)
+
+            local dropdownList = create("Frame", {
+                Size = UDim2.new(0.55, 0, 0, #options * 24),
+                Position = UDim2.new(0.4, 0, 1, 2),
+                BackgroundColor3 = Colors.Card,
+                BorderSizePixel = 0,
+                Visible = false,
+                ZIndex = 10,
+                Parent = container,
+            })
+            addCorner(dropdownList, 3)
+            addStroke(dropdownList)
+
+            for i, option in ipairs(options) do
+                local optBtn = create("TextButton", {
+                    Text = option,
+                    Font = Fonts.Body,
+                    TextSize = 11,
+                    TextColor3 = Colors.Text,
+                    BackgroundColor3 = Colors.Card,
+                    Size = UDim2.new(1, 0, 0, 24),
+                    Position = UDim2.new(0, 0, 0, (i - 1) * 24),
+                    AutoButtonColor = false,
+                    ZIndex = 11,
+                    Parent = dropdownList,
+                })
+                optBtn.MouseEnter:Connect(function() optBtn.BackgroundColor3 = Colors.Button end)
+                optBtn.MouseLeave:Connect(function() optBtn.BackgroundColor3 = Colors.Card end)
+                optBtn.MouseButton1Click:Connect(function()
+                    selected = option
+                    selectedBtn.Text = option .. " ▼"
+                    dropdownList.Visible = false
+                    expanded = false
+                    if opts.Callback then opts.Callback(option) end
+                end)
+            end
+
+            selectedBtn.MouseButton1Click:Connect(function()
+                expanded = not expanded
+                dropdownList.Visible = expanded
+            end)
+        end
+
+        return Tab
+    end
+
+    return setmetatable(Window, Window)
+end
+
+return XQTZ
